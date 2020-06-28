@@ -30,7 +30,7 @@ class Sample(object):
         self.data = []
     
     def getname(self):
-        return self.name.replace('\x00', ' ').rstrip()
+        return self.name.decode('ascii').replace('\x00', ' ').rstrip()
     
     def load(self, file, offset, loadflags):
         if self.flags & CHN_ADLIB or self.length < 1 or not file:
@@ -145,7 +145,7 @@ class Instrument(object):
         self.played = 0
         
     def getname(self):
-        return self.name.replace('\x00', ' ').rstrip()
+        return self.name.decode('ascii').replace('\x00', ' ').rstrip()
 
 
 class Channel(object):
@@ -387,7 +387,7 @@ class Module(object):
         self.tracker = ''
         
     def getname(self):
-        return self.name.replace('\x00', ' ').strip()
+        return self.name.decode('ascii').replace('\x00', ' ').strip()
 
     def __unicode__(self):
         return '%s Module (%s)' % (self.__class__.__name__, (self.getname(), self.filename)[bool(self.getname() == '')])

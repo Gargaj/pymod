@@ -17,8 +17,7 @@ def File(filename, options=None):
 
     results = [(Kind.detect(filename), Kind.__name__) for Kind in options]
     
-    results = zip(results, options)
-    results.sort()
+    results = sorted(zip(results, options))
     (score, name), Kind = results[-1]
     if score > 0: return Kind(filename)
     else: return None

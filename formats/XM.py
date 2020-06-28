@@ -346,12 +346,12 @@ class XM(Module):
         f = open(filename, 'rb')
         id = struct.unpack("<17s", f.read(17))[0]
         f.close()
-        if id == 'Extended Module: ':
+        if id.decode('ascii') == 'Extended Module: ':
             return 2
         else:
             return 0
     detect = staticmethod(detect)
             
     def gettracker(self):
-        return self.tracker.replace('\x00', ' ').strip()
+        return self.tracker.decode('ascii').replace('\x00', ' ').strip()
 
